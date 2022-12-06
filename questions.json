@@ -1,0 +1,19 @@
+[
+  {
+    "question": "What type of framework is Next.js?",
+    "option1": "FrontEnd",
+    "option2": "BackEnd",
+    "option3": "Full Stack",
+    "option4":"None of Obove",
+    "correct": "Full Stack"
+  },
+  {
+    "question": "What type of framework is React.js?",
+    "option1": "FrontEnd",
+    "option2": "BackEnd",
+    "option3": "Full Stack",
+    "option4":"None of Obove",
+    "correct": "FrontEnd"
+  }
+
+]
