@@ -266,40 +266,48 @@ export default function Email() {
                     {emails[currentQuestion]?.attributes?.message}
                   </h6>
                 </div>
-                <a
-                  href={emails[currentQuestion]?.attributes?.hyperLink}
-                  className="text-blue-500 justify-start flex mx-20 text-sm"
-                  data-tooltip-target="tooltip-default"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Please click here to see more details.
-                </a>
-                <div
-                  id="tooltip-default"
-                  role="tooltip"
-                  className=" absolute invisible justify-start flex mx-20 z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700"
-                >
-                  {emails[currentQuestion]?.attributes?.hyperLink}
-                  <div
-                    className="tooltip-arrow flex justify-start"
-                    data-popper-arrow
-                  ></div>
-                </div>
+                {emails[currentQuestion]?.attributes?.hyperLink ? (
+                  <>
+                    <a
+                      href={emails[currentQuestion]?.attributes?.hyperLink}
+                      className="text-blue-500 justify-start flex mx-20 text-sm"
+                      data-tooltip-target="tooltip-default"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Please click here to see more details.
+                    </a>
+                    <div
+                      id="tooltip-default"
+                      role="tooltip"
+                      className=" absolute invisible justify-start flex mx-20 z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700"
+                    >
+                      {emails[currentQuestion]?.attributes?.hyperLink}
+                      <div
+                        className="tooltip-arrow flex justify-start"
+                        data-popper-arrow
+                      ></div>
+                    </div>
+                  </>
+                ) : null}
+                {emails[currentQuestion]?.attributes?.attachment ? (
+                  <>
+                    <div className="mx-20 justify-start flex mt-10 ">
+                      <h1 className="text-black font-bold text-sm">
+                        One attachment •{" "}
+                        <span className="font-normal">Scanned by Gmail</span>
+                      </h1>
+                    </div>
+                    <div className="mx-20 mt-2">
+                      <img
+                        src={emails[currentQuestion]?.attributes?.attachment}
+                        alt="attachment"
+                        className="w-[120px] h-[100px]"
+                      />
+                    </div>
+                  </>
+                ) : null}
 
-                <div className="mx-20 justify-start flex mt-10 ">
-                  <h1 className="text-black font-bold text-sm">
-                    One attachment •{" "}
-                    <span className="font-normal">Scanned by Gmail</span>
-                  </h1>
-                </div>
-                <div className="mx-20 mt-2">
-                  <img
-                    src={emails[currentQuestion]?.attributes?.attachment}
-                    alt="attachment"
-                    className="w-[120px] h-[100px]"
-                  />
-                </div>
                 <div className="flex justify-start mx-20 mt-10 gap-4">
                   <h1 className="text-black inline-block border border-gray-800 px-8 py-1 rounded-full">
                     Reply
