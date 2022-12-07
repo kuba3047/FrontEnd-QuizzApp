@@ -18,7 +18,7 @@ export default function Email() {
 
   async function getEmails() {
     try {
-      const response = await axios.get(STRAPI_URL + "/api/emails");
+      const response = await axios.get(STRAPI_URL + "/api/emails?populate=*");
       const result = response.data.data;
       setEmails(result);
     } catch (error) {
@@ -261,22 +261,24 @@ export default function Email() {
                     </div>
                   </div>
                 </div>
-                <div>
-                  <h6 className="text-black text-sm text-justify mx-20">
+                <div className="mx-10 lg:mx-40">
+                  <h6 className="text-black text-sm text-justify leading-6">
                     {emails[currentQuestion]?.attributes?.message}
                   </h6>
                 </div>
+
                 {emails[currentQuestion]?.attributes?.hyperLink ? (
                   <>
                     <a
                       href={emails[currentQuestion]?.attributes?.hyperLink}
-                      className="text-blue-500 justify-start flex mx-20 text-sm"
+                      className="text-blue-500 justify-start flex mx-10 lg:mx-40 text-sm"
                       data-tooltip-target="tooltip-default"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       Please click here to see more details.
                     </a>
+
                     <div
                       id="tooltip-default"
                       role="tooltip"
@@ -290,6 +292,23 @@ export default function Email() {
                     </div>
                   </>
                 ) : null}
+                {emails[currentQuestion]?.attributes?.image?.data?.attributes
+                  ?.url ? (
+                  <a
+                    href={emails[currentQuestion]?.attributes?.image_hyperlink}
+                    target="_none"
+                  >
+                    <img
+                      src={
+                        emails[currentQuestion]?.attributes?.image?.data
+                          ?.attributes?.url
+                      }
+                      alt=""
+                      className="w-[450px] h-[200px] mx-auto mt-5 cursor-pointer"
+                    />
+                  </a>
+                ) : null}
+
                 {emails[currentQuestion]?.attributes?.attachment ? (
                   <>
                     <div className="mx-20 justify-start flex mt-10 ">
